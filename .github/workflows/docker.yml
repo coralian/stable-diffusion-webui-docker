@@ -90,10 +90,12 @@ jobs:
           else
             VERSION="${GITHUB_SHA}"
           fi
-          IMAGE_NAME="leapingcroc/stable-diffusion-webui-docker"
+          IMAGE_NAME="${{ env.DOCKERHUB_USERNAME }}/stable-diffusion-webui-docker"
           docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${{ matrix.profile }}_latest
           docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${{ matrix.profile }}_${VERSION}
-          docker push leapingcroc/stable-diffusion-webui-docker:${{ matrix.profile }}_latest
+          echo "test leapingcroc test"
+          echo ${IMAGE_NAME}
+          docker push ${IMAGE_NAME}:${{ matrix.profile }}_latest
           docker push ${IMAGE_NAME}:${{ matrix.profile }}_${VERSION}
 
       - name: Tag and Push Docker Image to GitHub Container Registry
