@@ -12,7 +12,7 @@ on:
       auto11:
         description: 'Build auto11 profile'
         required: true
-        default: 'false'
+        default: 'true'
         type: choice
         options:
           - 'true'
@@ -20,7 +20,7 @@ on:
       comfy:
         description: 'Build comfy profile'
         required: true
-        default: 'false'
+        default: 'true'
         type: choice
         options:
           - 'true'
@@ -35,7 +35,7 @@ on:
       dockerhub:
         description: 'Upload to Docker Hub'
         required: true
-        default: 'false'
+        default: 'true'
         type: choice
         options:
           - 'true'
@@ -90,7 +90,7 @@ jobs:
           else
             VERSION="${GITHUB_SHA}"
           fi
-          IMAGE_NAME="your-dockerhub-username/your-image:${{ matrix.profile }}"
+          IMAGE_NAME="leapingcroc/stable-diffusion-webui-docker:${{ matrix.profile }}"
           docker tag ${IMAGE_NAME} ${IMAGE_NAME}:latest
           docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${VERSION}
           docker push ${IMAGE_NAME}:latest
