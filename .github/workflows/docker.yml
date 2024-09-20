@@ -2,7 +2,7 @@ name: Build and Push Docker Images
 
 on:
   push:
-    branches: master
+    branches: release
   pull_request:
       paths:
         - docker-compose.yml
@@ -90,9 +90,9 @@ jobs:
           else
             VERSION="${GITHUB_SHA}"
           fi
-          IMAGE_NAME="leapingcroc/stable-diffusion-webui-docker:${{ matrix.profile }}"
-          docker tag ${IMAGE_NAME} ${IMAGE_NAME}:latest
-          docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${VERSION}
+          IMAGE_NAME="leapingcroc/stable-diffusion-webui-docker"
+          docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${{ matrix.profile }}_latest
+          docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${{ matrix.profile }}_${VERSION}
           docker push ${IMAGE_NAME}:latest
           docker push ${IMAGE_NAME}:${VERSION}
 
