@@ -93,8 +93,8 @@ jobs:
           IMAGE_NAME="leapingcroc/stable-diffusion-webui-docker"
           docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${{ matrix.profile }}_latest
           docker tag ${IMAGE_NAME} ${IMAGE_NAME}:${{ matrix.profile }}_${VERSION}
-          docker push ${IMAGE_NAME}:latest
-          docker push ${IMAGE_NAME}:${VERSION}
+          docker push leapingcroc/stable-diffusion-webui-docker:${{ matrix.profile }}_latest
+          docker push ${IMAGE_NAME}:${{ matrix.profile }}_${VERSION}
 
       - name: Tag and Push Docker Image to GitHub Container Registry
         if: inputs.ghcr == 'true' && ((matrix.profile == 'auto11' && inputs.auto11 == 'true') || (matrix.profile == 'comfy' && inputs.comfy == 'true') || (matrix.profile == 'download'))
