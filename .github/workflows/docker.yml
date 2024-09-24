@@ -78,7 +78,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image
-        run: docker compose --profile ${{ matrix.profile }} build --progress plain
+        run: docker compose --progress plain --profile ${{ matrix.profile }} build 
 
       - name: Tag and Push Docker Image to Docker Hub
         if: inputs.dockerhub == 'true' && ((matrix.profile == 'auto11' && inputs.auto11 == 'true') || (matrix.profile == 'comfy' && inputs.comfy == 'true') || (matrix.profile == 'download'))
